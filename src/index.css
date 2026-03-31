@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #070d0a;
+  --electric: hsl(165, 90%, 42%);
+  --border: hsl(220, 15%, 17%);
+  --fg: hsl(150, 10%, 94%);
+  --muted: hsl(220, 10%, 45%);
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html, body, #root {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-heading);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Grid background */
+body {
+  background-image:
+    linear-gradient(hsl(165 90% 42% / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(165 90% 42% / 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Override Clerk component styles to match Aliasist theme */
+.cl-rootBox { width: 100% !important; }
+.cl-card {
+  background: hsl(220, 18%, 10%) !important;
+  border: 1px solid hsl(220, 15%, 17%) !important;
+  border-radius: 2px !important;
+  box-shadow: 0 0 40px hsl(165 90% 42% / 0.08) !important;
+}
+.cl-headerTitle {
+  color: hsl(150, 10%, 94%) !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+}
+.cl-headerSubtitle { color: hsl(220, 10%, 50%) !important; }
+.cl-formButtonPrimary {
+  background: hsl(165, 90%, 42%) !important;
+  color: hsl(220, 18%, 7%) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.7rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  border-radius: 2px !important;
+  border: none !important;
+  transition: background 0.2s !important;
+}
+.cl-formButtonPrimary:hover { background: hsl(165, 90%, 36%) !important; }
+.cl-formFieldInput {
+  background: hsl(220, 18%, 7%) !important;
+  border: 1px solid hsl(220, 15%, 20%) !important;
+  border-radius: 2px !important;
+  color: hsl(150, 10%, 94%) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+}
+.cl-formFieldInput:focus { border-color: hsl(165, 90%, 42%) !important; box-shadow: 0 0 0 2px hsl(165 90% 42% / 0.15) !important; }
+.cl-formFieldLabel { color: hsl(150, 10%, 70%) !important; font-family: 'JetBrains Mono', monospace !important; font-size: 0.7rem !important; text-transform: uppercase !important; letter-spacing: 0.1em !important; }
+.cl-socialButtonsBlockButton {
+  background: hsl(220, 18%, 12%) !important;
+  border: 1px solid hsl(220, 15%, 20%) !important;
+  border-radius: 2px !important;
+  color: hsl(150, 10%, 80%) !important;
+  transition: border-color 0.2s, background 0.2s !important;
+}
+.cl-socialButtonsBlockButton:hover { border-color: hsl(165, 90%, 42%) !important; background: hsl(165 90% 42% / 0.05) !important; }
+.cl-dividerLine { background: hsl(220, 15%, 17%) !important; }
+.cl-dividerText { color: hsl(220, 10%, 40%) !important; font-family: 'JetBrains Mono', monospace !important; font-size: 0.65rem !important; }
+.cl-footerActionText { color: hsl(220, 10%, 45%) !important; }
+.cl-footerActionLink { color: hsl(165, 90%, 42%) !important; }
+.cl-identityPreviewText { color: hsl(150, 10%, 80%) !important; }
+.cl-userButtonPopoverCard { background: hsl(220, 18%, 10%) !important; border: 1px solid hsl(220, 15%, 17%) !important; }
+.cl-userButtonPopoverActionButton { color: hsl(150, 10%, 80%) !important; }
+.cl-userButtonPopoverActionButton:hover { background: hsl(165 90% 42% / 0.1) !important; }
