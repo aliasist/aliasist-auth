@@ -1,4 +1,4 @@
-import { Show, SignIn, SignUp, UserButton, useUser } from '@clerk/react'
+import { ClerkLoaded, ClerkLoading, ClerkFailed, SignIn, SignUp, UserButton, useUser, useAuth } from '@clerk/react'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 
@@ -194,22 +194,39 @@ function AuthPage({ mode }: { mode: 'sign-in' | 'sign-up' }) {
   )
 }
 
-export default function App() {
-  const path = window.location.pathname
+function AppInner() {
+  const { isLoaded, userId } = useAuth()
 
+  if (!isLoaded) return null
+
+  if (!userId) {
+    // Let Clerk handle redirect to its configured sign-in URL
+    const path = window.location.pathname
+    return path === '/sign-up' ? <AuthPage mode="sign-up" /> : <AuthPage mode="sign-in" />
+  }
+
+  return <Dashboard />
+}
+
+export default function App() {
   return (
     <div style={{ position: 'relative', zIndex: 1 }}>
       <Stars />
       <div style={{ position: 'relative', zIndex: 2 }}>
-        <Show when="signed-in">
-          <Dashboard />
-        </Show>
-        <Show when="signed-out">
-          {path === '/sign-up'
-            ? <AuthPage mode="sign-up" />
-            : <AuthPage mode="sign-in" />
-          }
-        </Show>
+        <ClerkLoading>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', fontFamily: 'monospace', color: 'hsl(165,90%,42%)', fontSize: 12, letterSpacing: '0.2em' }}>
+            // initializing auth...
+          </div>
+        </ClerkLoading>
+        <ClerkFailed>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', fontFamily: 'monospace', color: '#f87171', fontSize: 12, letterSpacing: '0.2em', gap: 8 }}>
+            <span>// auth initialization failed</span>
+            <span style={{ color: '#6b7280' }}>check clerk dashboard → allowed origins</span>
+          </div>
+        </ClerkFailed>
+        <ClerkLoaded>
+          <AppInner />
+        </ClerkLoaded>
       </div>
     </div>
   )

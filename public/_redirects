@@ -1,1 +1,4 @@
+/ https://accounts.aliasist.com/sign-in 302
+/sign-in https://accounts.aliasist.com/sign-in 302
+/sign-up https://accounts.aliasist.com/sign-up 302
 /* /index.html 200
