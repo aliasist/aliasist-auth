@@ -14,6 +14,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ClerkProvider
       publishableKey={PUBLISHABLE_KEY}
+      domain="clerk.aliasist.com"
       afterSignOutUrl="/"
       signInUrl="/sign-in"
       signUpUrl="/sign-up"
