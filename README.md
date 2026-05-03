@@ -1,30 +1,12 @@
 # Aliasist Auth
 
-Central **authentication portal** for the Aliasist suite — **auth.aliasist.com**. Built with React, Vite, and [Clerk](https://clerk.com/).
+Aliasist uses this repo for sign-in.
 
-**Suite:** [aliasist.com](https://aliasist.com)
+It provides:
 
-## Local development
+- the public authentication entry point
+- a small React app
+- account access for the suite
+- a thin surface with limited scope
 
-```bash
-npm install
-cp .env.example .env
-```
-
-Set Clerk publishable key (and any other variables from `.env.example`) in `.env`, then:
-
-```bash
-npm run dev
-```
-
-## Scripts
-
-| Command | Description |
-|--------|-------------|
-| `npm run dev` | Vite dev server |
-| `npm run build` | TypeScript + production build |
-| `npm run preview` | Preview production build |
-
-## Deploy
-
-Static hosting (e.g. Cloudflare Pages) with SPA fallback; see `public/_redirects` for routing hints.
+This repo stays focused on login and account access only.
