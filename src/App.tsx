@@ -6,7 +6,16 @@ const SUITE = [
   { name: 'DataSist',  sub: 'AI Data Center Intel',     href: 'https://datasist-frontend.pages.dev', icon: '🌐' },
   { name: 'PulseSist', sub: 'Stock Market Intelligence', href: 'https://pulse.aliasist.com',          icon: '📈' },
   { name: 'SpaceSist', sub: 'Live Space Portal',         href: 'https://space.aliasist.com',           icon: '🌌' },
+  { name: 'EcoSist',   sub: 'Ecological Intelligence',   href: 'https://ecosist.aliasist.com',         icon: '🌱' },
+  { name: 'TikaSist',  sub: 'TikTok Keyword Intel',       href: 'https://tikasist-api.bchooper0730.workers.dev', icon: '👁️' },
   { name: 'Aliasist',  sub: 'Portfolio & Projects',      href: 'https://aliasist.com',                 icon: '🛸' },
+]
+
+const SUITE_SLIDES = [
+  { name: 'DataSist', sub: 'Global infrastructure watch', image: '/cinematic/datasist-orbital-infrastructure-hero.png' },
+  { name: 'PulseSist', sub: 'Live market intelligence', image: '/cinematic/pulsesist-market-signals-hero.png' },
+  { name: 'EcoSist', sub: 'Environmental observatory', image: '/cinematic/ecosist-environmental-observatory-hero.png' },
+  { name: 'SpaceSist', sub: 'Orbital mission tracking', image: '/cinematic/spacesist-orbital-mission-hero.png' },
 ]
 
 const WORDMARK = 'ALIASIST'
@@ -88,6 +97,35 @@ function Dashboard() {
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--electric)] animate-pulse" />
             Suite Active
           </div>
+          <div
+            className="sm:hidden flex gap-3 overflow-x-auto pb-3 mb-6"
+            style={{ scrollSnapType: 'x mandatory' }}
+            aria-label="Mobile suite slides"
+          >
+            {SUITE_SLIDES.map((slide) => (
+              <article
+                key={slide.name}
+                className="relative min-w-[84%] overflow-hidden rounded-[1.5rem] border border-[var(--border)]"
+                style={{ minHeight: '12.5rem', scrollSnapAlign: 'start' }}
+              >
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `linear-gradient(180deg, rgba(7,13,10,0.06), rgba(7,13,10,0.84)), url('${slide.image}')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                />
+                <div className="relative z-10 flex h-full flex-col justify-end gap-2 p-4">
+                  <span className="w-fit rounded-full border border-[var(--electric)]/35 bg-[hsl(220,18%,10%,0.72)] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--electric)]">
+                    Suite Mission
+                  </span>
+                  <strong className="text-lg leading-tight">{slide.name}</strong>
+                  <p className="max-w-[15rem] text-sm text-[hsl(150,10%,78%)]">{slide.sub}</p>
+                </div>
+              </article>
+            ))}
+          </div>
           <h1 className="text-3xl sm:text-4xl font-bold mb-2">
             Welcome back{user?.firstName ? `, ${user.firstName}` : ''}.
           </h1>
@@ -129,14 +167,71 @@ function AuthPage({ mode }: { mode: 'sign-in' | 'sign-up' }) {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Nav */}
-      <nav className="flex items-center justify-between px-8 py-5 border-b border-[var(--border)]">
+      <nav className="flex items-center justify-between px-4 sm:px-8 py-4 sm:py-5 border-b border-[var(--border)]">
         <GlowWordmark />
         <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--muted)] hidden sm:block">
           Secure Authentication
         </span>
       </nav>
 
-      <div className="flex-1 flex">
+      <div className="flex-1 flex flex-col lg:flex-row">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+          className="lg:hidden px-4 pt-6 pb-3"
+        >
+          <div className="rounded-3xl border border-[var(--border)] bg-[hsl(220,18%,10%,0.72)] backdrop-blur-xl px-5 py-5">
+            <div
+              className="flex gap-3 overflow-x-auto pb-3 mb-4"
+              style={{ scrollSnapType: 'x mandatory' }}
+              aria-label="Mobile suite brand slides"
+            >
+              {SUITE_SLIDES.map((slide) => (
+                <article
+                  key={slide.name}
+                  className="relative min-w-[85%] overflow-hidden rounded-[1.35rem] border border-[var(--border)]"
+                  style={{ minHeight: '10.5rem', scrollSnapAlign: 'start' }}
+                >
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage: `linear-gradient(180deg, rgba(7,13,10,0.08), rgba(7,13,10,0.9)), url('${slide.image}')`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                  />
+                  <div className="relative z-10 flex h-full flex-col justify-end gap-1.5 p-4">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--electric)]">
+                      {slide.name}
+                    </span>
+                    <p className="text-sm text-[var(--fg)] leading-snug">{slide.sub}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--electric)] mb-2">
+              // Aliasist Suite
+            </div>
+            <h2 className="text-2xl font-bold leading-tight mb-2">
+              One login. <span style={{ color: 'hsl(165,90%,42%)' }}>All missions.</span>
+            </h2>
+            <p className="text-sm text-[var(--muted)] leading-relaxed">
+              Sign in fast, then jump straight into the tools. Mobile keeps the form first and the suite map close behind it.
+            </p>
+            <div className="mt-4 grid gap-2">
+              {SUITE.slice(0, 4).map(app => (
+                <div key={app.name} className="flex items-center justify-between rounded-2xl border border-[var(--border)] bg-[hsl(220,18%,8%,0.72)] px-3 py-2.5">
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-[var(--fg)]">{app.icon} {app.name}</p>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)] truncate">{app.sub}</p>
+                  </div>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--electric)]/70">Live</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
         {/* Left — branding */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -182,12 +277,30 @@ function AuthPage({ mode }: { mode: 'sign-in' | 'sign-up' }) {
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="flex-1 flex items-center justify-center px-6 py-12"
+          className="flex-1 flex items-start lg:items-center justify-center px-4 sm:px-6 py-4 sm:py-12"
         >
-          {mode === 'sign-in'
-            ? <SignIn routing="path" path="/sign-in" signUpUrl="/sign-up" />
-            : <SignUp routing="path" path="/sign-up" signInUrl="/sign-in" />
-          }
+          <div className="w-full max-w-md flex flex-col gap-4">
+            <div className="lg:hidden rounded-2xl border border-[var(--border)] bg-[hsl(220,18%,10%,0.72)] px-4 py-3">
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--electric)] mb-1">Fast access</p>
+              <p className="text-sm text-[var(--muted)]">Authenticate first. Explore the full suite immediately after.</p>
+            </div>
+            {mode === 'sign-in'
+              ? <SignIn routing="path" path="/sign-in" signUpUrl="/sign-up" />
+              : <SignUp routing="path" path="/sign-up" signInUrl="/sign-in" />
+            }
+            <div className="lg:hidden rounded-2xl border border-[var(--border)] bg-[hsl(220,18%,10%,0.66)] px-4 py-4">
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)] mb-2">What you unlock</p>
+              <div className="grid gap-2">
+                {SUITE.slice(0, 3).map(app => (
+                  <div key={app.name} className="flex items-center gap-2 text-sm text-[var(--muted)]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--electric)]" />
+                    <span className="text-[var(--fg)] font-medium">{app.name}</span>
+                    <span className="truncate">{app.sub}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </div>
